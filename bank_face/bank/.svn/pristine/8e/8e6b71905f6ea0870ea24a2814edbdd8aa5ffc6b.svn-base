@@ -1,0 +1,52 @@
+package com.example.demo.cust.service.impl;
+
+import com.example.demo.cust.dao.CustMapper;
+import com.example.demo.cust.pojo.Cust;
+import com.example.demo.cust.pojo.custData.CustInfo;
+import com.example.demo.cust.pojo.Result;
+import com.example.demo.cust.pojo.custData.SinData;
+import com.example.demo.cust.service.CustService;
+import com.example.demo.cust.util.MD;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class CustServiceImpl implements CustService {
+
+    @Autowired
+    private CustMapper custMapper;
+
+    @Override
+    public Cust getCustByIdNo(String idNo) {
+        return custMapper.getCustByIdNo(idNo);
+    }
+    public Result getRecords(String userId) {
+        RestTemplate restTemplate = new RestTemplate();
+        String sign[] = MD.signMD5();
+        //人脸识别机器app_key
+        String app_key = "b9a3cd69619bfefd";
+        CustInfo custInfo = restTemplate.getForObject("http://192.168.2.186/api/v1/record?app_key=" +app_key+
+                        "&timestamp=" +sign[0]+
+                        "&sign="+sign[1]
+                ,CustInfo.class);
+
+        for(SinData sindata : custInfo.getData().getData()){
+            if(sindata.getType()==2){
+
+            }
+        }
+        System.out.println(custInfo);
+        return null;
+    }
+
+    @Override
+    public void checkVIP() {
+        
+    }
+
+    public static void main(String[] args) {
+        CustServiceImpl service = new CustServiceImpl();
+        service.getRecords("1");
+    }
+}

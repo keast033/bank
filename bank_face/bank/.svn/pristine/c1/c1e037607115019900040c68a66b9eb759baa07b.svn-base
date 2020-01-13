@@ -1,0 +1,13 @@
+package com.example.demo.cust.pojo;
+
+import java.util.LinkedHashMap;
+
+public class Result extends LinkedHashMap {
+
+    private final String DATA = "data";
+
+    public Result success(Object data) {
+        this.put(DATA, data);
+        return this;
+    }
+}

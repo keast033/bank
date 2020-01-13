@@ -1,0 +1,69 @@
+package com.example.demo.cust.service.impl;
+
+import com.example.demo.cust.dao.CustMapper;
+import com.example.demo.cust.pojo.Cust;
+import com.example.demo.cust.pojo.custData.CustInfo;
+import com.example.demo.cust.pojo.Result;
+import com.example.demo.cust.pojo.custData.SinData;
+import com.example.demo.cust.service.CustService;
+import com.example.demo.cust.util.MD;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class CustServiceImpl implements CustService {
+
+    @Autowired
+    private CustMapper custMapper;
+    private CustInfo custInfo;
+    //人脸识别机器app_key
+    private static String APP_KEY="b9a3cd69619bfefd";
+    //存储时间戳与密文
+    private String[] sign;
+    private Integer c_userId;
+
+    @Override
+    public Cust getCustByIdNo(String idNo) {
+        return custMapper.getCustByIdNo(idNo);
+    }
+    public CustInfo getRecords() {
+        RestTemplate restTemplate = new RestTemplate();
+        sign = MD.signMD5();
+
+        return restTemplate.getForObject("http://192.168.2.186/api/v1/record?app_key=" +APP_KEY+
+                        "&timestamp=" +sign[0]+
+                        "&sign="+sign[1]
+                ,CustInfo.class);
+    }
+
+    @Override
+    public String checkVIP(Integer userId) {
+        custInfo = getRecords();
+        Cust cust = new Cust();
+//        未链接数据库 为方便测试暂时注解
+//        cust = getCustByUserId(userId);
+        cust.setCount(10);
+        cust.setUserId(userId);
+        c_userId=cust.getUserId();
+        for(SinData sindata : custInfo.getData().getData()){
+            if(sindata.getType()==2&&sindata.getUserId()==c_userId){
+                System.out.println("识别到VIP客户！");
+                return "识别到VIP客户！";
+            }
+        }
+        System.out.println("未识别到VIP客户");
+        return "未识别到VIP客户";
+    }
+
+    @Override
+    public Cust getCustByUserId(Integer userId) {
+        Cust cust = custMapper.getCustByUserId(userId);
+        return cust;
+    }
+
+    public static void main(String[] args) {
+        CustServiceImpl service = new CustServiceImpl();
+        service.checkVIP(4);
+    }
+}

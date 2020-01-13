@@ -1,0 +1,48 @@
+package com.example.demo.cust.pojo;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.math.BigDecimal;
+
+@Data
+@Accessors(chain = true)
+public class Cust {
+
+    //日期
+    private String date;
+    //姓名
+    private String name;
+    //身份证号
+    private String idno;
+    //阳光E贷
+    private int YGEDState;
+    //手机银行
+    private int mobileBankState;
+    //省微信
+    private int provinceWXState;
+    //支付宝
+    private int AliPayState;
+    //微信支付
+    private int WXPayState;
+    //百度支付
+    private int baiDuPayState;
+    //京东
+    private int JDPayState;
+    //云闪付
+    private int cloudFlashPayState;
+    //银联
+    private int unionPayState;
+    //贷记卡
+    private int creditCardState;
+    //ETC
+    private int ETCState;
+    //是否是授信客户
+    private int SXKHState;
+    //是否是电银客户
+    private int DYKHState;
+    //用户来访总次数
+    private int count;
+    //识别系统唯一userID
+    private int userId;
+}

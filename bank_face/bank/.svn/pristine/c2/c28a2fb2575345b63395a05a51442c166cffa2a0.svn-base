@@ -1,0 +1,67 @@
+package com.example.demo.cust.pojo.custData;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+//单个人脸识别记录
+
+public class SinData {
+    private Integer id;
+    //识别者身份类型 1：员工 2：访客 3：陌生人
+    private Integer type;
+    private Integer userId;
+    private String signTime;
+
+    @Override
+    public String toString() {
+        return "SinData{" +
+                "id=" + id +
+                ", type=" + type +
+                ", userId=" + userId +
+                ", signDate='" + signTime + '\'' +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getSignTime() {
+        return signTime;
+    }
+
+    public void setSignTime(String signDate) {
+        this.signTime = signDate;
+    }
+
+    public SinData(Integer id, Integer type, Integer userId, String signTime) {
+
+        this.id = id;
+        this.type = type;
+        this.userId = userId;
+        this.signTime = signTime;
+    }
+
+    public SinData() {
+
+    }
+}

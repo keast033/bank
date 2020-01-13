@@ -1,0 +1,14 @@
+package com.example.demo.cust.service;
+
+import com.example.demo.cust.pojo.Cust;
+import com.example.demo.cust.pojo.Result;
+import com.example.demo.cust.pojo.custData.CustInfo;
+import com.example.demo.cust.pojo.custData.SinData;
+
+public  interface CustService {
+
+    public Cust getCustByIdNo(String idNo);
+    public CustInfo getRecords();
+    public SinData checkVIP();
+    public Cust getCustByUserId(Integer userId);
+}

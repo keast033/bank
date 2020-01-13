@@ -1,0 +1,11 @@
+package com.example.demo.cust.dao;
+
+import com.example.demo.cust.pojo.Cust;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
+public interface CustMapper {
+    Cust getCustByIdNo(String idNo);
+}

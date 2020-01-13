@@ -1,0 +1,17 @@
+package com.example.demo.cust.dao;
+
+import com.example.demo.cust.pojo.custData.SinData;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+
+@Mapper
+@Repository
+public interface SinDataMapper {
+    @Select("select * from sindata")
+    ArrayList<SinData> getAllSinData();
+    @Select("select userId from sindata")
+    ArrayList<Integer> getAllVIPUserId();
+}

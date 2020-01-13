@@ -1,0 +1,21 @@
+package com.example.demo.cust.service.impl;
+
+import com.example.demo.cust.dao.SinDataMapper;
+import com.example.demo.cust.pojo.custData.SinData;
+import com.example.demo.cust.service.SinDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+
+public class SinDataServiceImpl implements SinDataService {
+    @Autowired
+    private SinDataMapper sinDataMapper;
+    private ArrayList<Integer> userIdList;
+    @Override
+    public ArrayList<Integer> getAllUserId() {
+        for (SinData data :sinDataMapper.getAllSinData()){
+            userIdList.add(data.getUserId());
+        }
+        return userIdList;
+    }
+}

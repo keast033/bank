@@ -1,0 +1,14 @@
+package com.example.demo.cust.dao;
+
+import com.example.demo.cust.pojo.Cust;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
+public interface CustMapper {
+    Cust getCustByIdNo(String idNo);
+    @Select("select * from cust where userId = #{userId}")
+    Cust getCustByUserId(Integer userId);
+}

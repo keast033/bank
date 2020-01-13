@@ -1,0 +1,10 @@
+package com.example.demo.cust.service;
+
+import com.example.demo.cust.pojo.Cust;
+import com.example.demo.cust.pojo.Result;
+
+public  interface CustService {
+
+    public Cust getCustByIdNo(String idNo);
+    public Result getRecords(String userId);
+}

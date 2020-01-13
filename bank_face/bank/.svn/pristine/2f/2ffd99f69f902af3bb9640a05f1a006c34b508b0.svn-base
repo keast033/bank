@@ -1,0 +1,30 @@
+package com.example.demo.cust.service.impl;
+
+import com.example.demo.cust.dao.CustMapper;
+import com.example.demo.cust.pojo.Cust;
+import com.example.demo.cust.pojo.Result;
+import com.example.demo.cust.service.CustService;
+import com.example.demo.cust.util.MD;
+import com.example.demo.cust.util.MD5Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class CustServiceImpl implements CustService {
+
+    @Autowired
+    private CustMapper custMapper;
+
+    @Override
+    public Cust getCustByIdNo(String idNo) {
+        return custMapper.getCustByIdNo(idNo);
+    }
+    public Result getRecords(String userId) {
+        RestTemplate restTemplate = new RestTemplate();
+        String sign[] = MD.signMD5();
+        String response = restTemplate.getForObject("http://192.168.2.195/api/v1/record?app_key=b9a3cd69619bfefd&timestamp=1578475825911&sign=27eb4072759d062dd4076ff7b0fe67da",String.class);
+        System.out.println(response.toString());
+        return null;
+    }
+}
