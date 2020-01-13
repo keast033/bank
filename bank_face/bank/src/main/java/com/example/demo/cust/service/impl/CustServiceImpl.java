@@ -73,14 +73,15 @@ public class CustServiceImpl implements CustService {
         //idList=sinDataMapper.getAllVIPUserId();
         idList.add("13851623950");
 
-        outer: for(SinData sindata : custInfo.getData().getData()){
+        for(SinData sindata : custInfo.getData().getData()){
             //判断客户类型是否是访客且客户的userId是否在VIP中存在
             if(sindata.getType()==2&&idList.indexOf(sindata.getMobile())!=-1){
-                //第一次VIP识别时对时间进行初始化，初始化后返回outer处重新开始循环
+                //第一次VIP识别时对时间进行初始化
                 if(date.equals("")){
                     date=sindata.getSignTime();
                     System.out.println("时间初始化");
-                    continue outer;
+                    System.out.println("识别到最新的VIP客户记录！");
+                    return sindata;
                 }
                 //查询到的访客记录是由新到旧排列，即能保证查询到的第一个VIP到访记录为最新的
                 if(sindata.getSignTime().equals(date)){
