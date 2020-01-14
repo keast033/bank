@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -26,7 +27,9 @@ public class CustServiceImpl implements CustService {
     private CustMapper custMapper;
     @Autowired
     private SinDataMapper sinDataMapper;
+
     private CustInfo custInfo;
+
     private Cust cust;
 
     /**
@@ -50,8 +53,13 @@ public class CustServiceImpl implements CustService {
 
     @Override
     public Cust getCustByIdNo(String idNo) {
-        return custMapper.getCustByIdNo(idNo);
+        return custMapper.getCustByIdno(idNo);
     }
+
+    //    @Override
+//    public Cust getCustByIdNo(String idNo) {
+//        return custMapper.getCustByIdNo(idNo);
+//    }
     @Override
     public CustInfo getRecords() {
         RestTemplate restTemplate = new RestTemplate();
@@ -70,8 +78,7 @@ public class CustServiceImpl implements CustService {
         custInfo = getRecords();
 
         //未链接数据库 为方便测试暂时注解
-        //idList=sinDataMapper.getAllVIPUserId();
-        idList.add("13851623950");
+        idList=sinDataMapper.getAllVIPMobile();
 
         for(SinData sindata : custInfo.getData().getData()){
             //判断客户类型是否是访客且客户的userId是否在VIP中存在
@@ -99,13 +106,7 @@ public class CustServiceImpl implements CustService {
 
     @Override
     public Cust getCustByMobile(String mobile) {
-        /**
-         * 未连接数据库，使用测试数据
-        */
-//        Cust cust = custMapper.getCustByUserId(userId);
-        Cust cust = new Cust();
-        cust.setIdno("320121199410300018");
-
+        Cust cust = custMapper.getCustByMobile(mobile);
         return cust;
     }
 }

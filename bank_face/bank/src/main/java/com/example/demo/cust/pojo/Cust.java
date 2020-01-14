@@ -68,6 +68,14 @@ public class Cust {
     private Integer baiDuPayState;
 
     /**
+     * SYBState
+     * 收银宝
+     */
+    private Integer SYBState;
+
+
+    /**
+
      * JDPayState
      * 京东
      */
@@ -143,6 +151,35 @@ public class Cust {
                 ", count=" + count +
                 ", userId=" + userId +
                 '}';
+    }
+    public Integer getSYBState() {
+        return SYBState;
+    }
+
+    public Cust(String date, String name, String idno, Integer YGEDState, Integer mobileBankState, Integer provinceWXState, Integer aliPayState, Integer WXPayState, Integer baiDuPayState, Integer SYBState, Integer JDPayState, Integer cloudFlashPayState, Integer unionPayState, Integer creditCardState, Integer ETCState, Integer SXKHState, Integer DYKHState, Integer count, Integer userId) {
+        this.date = date;
+        this.name = name;
+        this.idno = idno;
+        this.YGEDState = YGEDState;
+        this.mobileBankState = mobileBankState;
+        this.provinceWXState = provinceWXState;
+        AliPayState = aliPayState;
+        this.WXPayState = WXPayState;
+        this.baiDuPayState = baiDuPayState;
+        this.SYBState = SYBState;
+        this.JDPayState = JDPayState;
+        this.cloudFlashPayState = cloudFlashPayState;
+        this.unionPayState = unionPayState;
+        this.creditCardState = creditCardState;
+        this.ETCState = ETCState;
+        this.SXKHState = SXKHState;
+        this.DYKHState = DYKHState;
+        this.count = count;
+        this.userId = userId;
+    }
+
+    public void setSYBState(Integer SYBState) {
+        this.SYBState = SYBState;
     }
 
     public String getDate() {

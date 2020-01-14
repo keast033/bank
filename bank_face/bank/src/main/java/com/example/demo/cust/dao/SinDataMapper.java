@@ -28,5 +28,5 @@ public interface SinDataMapper {
      * @return ArrayList<Integer> 电话号码
      */
     @Select("select mobile from sindata")
-    ArrayList<Integer> getAllVIPMobile();
+    ArrayList<String> getAllVIPMobile();
 }

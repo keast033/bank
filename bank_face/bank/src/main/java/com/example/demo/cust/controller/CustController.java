@@ -27,9 +27,9 @@ public class CustController {
     private Cust cust;
 
     @RequestMapping(value = "getRecords", method = RequestMethod.GET)
-    public Result getRecords(String idNo) {
-        Cust cust = custService.getCustByIdNo(idNo);
-        return new Result().success(cust);
+    public Cust getRecords(String idNo) {
+        cust = custService.getCustByIdNo(idNo);
+        return cust;
     }
 
     @RequestMapping(value = "checkVIP",method = RequestMethod.GET)
